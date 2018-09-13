@@ -1,0 +1,29 @@
+- title: Home
+  url: /
+- title: Module 1
+  url: /module/1/index.html
+  sublinks:
+    - title: Professional bio
+      url: /professional-bio.html
+    - title: Personal image
+      url: /personal-image.html
+    - title: Video resume & elevator pitch
+      url: /video-resume-pitch.html
+    - title: Presentations, interviews & networking
+      url: /presentations-interviews-networking.html
+    - title: Critical review
+      url: /critical-review.html
+- title: Module 2
+  url: /module/2/index.html
+- title: Module 3
+  url: /module/2/index.html
+- title: Module 4
+  url: /support.html
+  sublinks:
+    - title: FAQ
+      url: /faq.html
+    - title: Documentation
+      url: /documentation.html
+    - title: separator
+    - title: Customer Support
+      url: /customer-support.html

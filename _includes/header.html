@@ -15,27 +15,33 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#">Home</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="/module/1">Module 1</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="/module/2">Module 2</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="/module/3">Module 3</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="/module/4">Module 4</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="/extra">Extra resources</a>
-                    </li>
+                    {% assign links = site.data.navigation %}
+                    {% for link in links %}
+                        {% assign class = nil %}
+                        {% if page.url contains link.url %}
+                            {% assign class = 'active' %}
+                        {% endif %}
+                        {% if link.sublinks %}
+                            <li class="dropdown {{ class }}">
+                                <a href="{{ site.baseurl }}{{ link.url }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ link.title }} <span class="caret"></span></a>
+                                <ul class="dropdown-menu" style="background-color: #000">
+                                    {% for sublink in link.sublinks %}
+                                        {% if sublink.title == 'separator' %}
+                                            <li role="separator" class="divider"></li>
+                                        {% else %}
+                                            <li>
+                                                <a href="{{ site.baseurl }}{{ sublink.url }}">{{ sublink.title }}</a>
+                                            </li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% else %}
+                            <li class="{{ class }}">
+                                <a href="{{ site.baseurl }}{{ link.url }}">{{ link.title }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -44,18 +50,12 @@
     </nav>
 
     <!-- Header -->
-    <header>
+    <header style="background-color: #{{page.header_background_color}}">
         <div class="container">
             <div class="intro-text">
-                <!-- <div class="intro-lead-in">Welcome To Our Studio!</div> -->
-                <div class="intro-heading">EVAP (English)</div>
+                <div class="intro-lead-in">{{page.header}}</div>
+                <div class="intro-heading">{{page.header_text}}</div>
                 <!-- <a href="#services" class="page-scroll btn btn-xl">Tell Me More</a> -->
             </div>
         </div>
     </header>
-<!--
-        {% for page in site.pages %}
-          {% if page.title %}<a class="page-link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>{% endif %}
-        {% endfor %}
- -->
-
